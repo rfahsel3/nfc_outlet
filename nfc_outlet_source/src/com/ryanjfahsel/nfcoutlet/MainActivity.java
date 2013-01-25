@@ -26,12 +26,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.example.myfirstapp.R;
+import com.ryanjfahsel.nfcoutlet.R;
 
 public class MainActivity extends Activity {
-
-	//Create new Network Activity and pass it the current activity
-	NetworkActivity network = new NetworkActivity(this);
+	MainActivity mActivity = this;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +39,7 @@ public class MainActivity extends Activity {
 	    button.setOnClickListener(new View.OnClickListener() {
 	        public void onClick(View v) {
 	            // Perform action on click
-	        	network.execute();
+	        	new NetworkActivity(mActivity).execute();
 	        	//Add Text
 	        	TextView text = (TextView)findViewById(R.id.tv1);
 	        	

@@ -15,7 +15,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.example.myfirstapp.R;
+import com.ryanjfahsel.nfcoutlet.R;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -32,7 +32,8 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 	}
 	
 	protected Void doInBackground(Void... params) {
-		postData("www.ryanjfahsel.com/index.php", "902563529","rfahsel3","Katie sucks");
+		postData("http://www.ryanjfahsel.com/index.php", "902563529","rfahsel3","Katie sucks");
+		Log.w("Got Here", "Got here");
 		return null;
 	}
 	
