@@ -15,6 +15,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.example.myfirstapp.R;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -28,13 +30,15 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 	{
 		this.mActivity=mActivity;
 	}
+	
 	protected Void doInBackground(Void... params) {
 		postData("www.ryanjfahsel.com/index.php", "902563529","rfahsel3","Katie sucks");
 		return null;
 	}
 	
 	protected void onPostExecute(Void result)  {
-		mActivity.findViewById();
+		tv = (TextView)mActivity.findViewById(R.id.tv1);
+		tv.setText(st);
 	}
 	
 	

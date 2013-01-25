@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 //I added these pkgs
 import org.apache.http.HttpEntity;
@@ -30,7 +31,7 @@ import com.example.myfirstapp.R;
 public class MainActivity extends Activity {
 
 	//Create new Network Activity and pass it the current activity
-	NetworkActivity network=new NetworkActivity(this);
+	NetworkActivity network = new NetworkActivity(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,6 +42,9 @@ public class MainActivity extends Activity {
 	        public void onClick(View v) {
 	            // Perform action on click
 	        	network.execute();
+	        	//Add Text
+	        	TextView text = (TextView)findViewById(R.id.tv1);
+	        	
 	        }
 	    });
 	}
