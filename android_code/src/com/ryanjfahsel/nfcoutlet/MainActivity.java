@@ -27,7 +27,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.ryanjfahsel.nfcoutlet.R;
-
+//Designed by Ryan, Colin, and Ramya
 public class MainActivity extends Activity {
 	MainActivity mActivity = this;
 	@Override
