@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 	    button.setOnClickListener(new View.OnClickListener() {
 	        public void onClick(View v) {
 	            // Perform action on click
-	        	new NetworkActivity(mActivity).execute();
+	        	new NetworkActivity(mActivity).get();
 	        	//Add Text
 	        	TextView text = (TextView)findViewById(R.id.tv1);
 	        	

@@ -44,7 +44,7 @@ public class Login extends Activity {
 				EditText usernameEdit = (EditText) findViewById(R.id.usernameInput);
 				EditText passwordEdit = (EditText) findViewById(R.id.passwordInput);
 				if(usernameEdit.getText().toString().length()>0 && passwordEdit.getText().toString().length()>0){
-				String netowrkMessage =new NetworkActivity(loginActivity).execute();
+				String networkMessage =new NetworkActivity(loginActivity).get();
 					if(networkMessage.equals("1")){
 						//Authenticated
 						//Save username and password
