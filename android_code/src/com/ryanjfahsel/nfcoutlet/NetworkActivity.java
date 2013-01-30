@@ -22,30 +22,48 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
-public class NetworkActivity extends AsyncTask<Void,Void,String> {
+public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 
 	private String st;
 	private TextView tv;
-	private Activity activity;
+	private Login LoginActivity;
+	private MainActivity mActivity;
 	String postURL;
 	String parameterList[][];
+	String activityType;
 	
-	public NetworkActivity(Activity mActivity, String postURL, String parameterList[][]){
-		this.activity=mActivity;
-		this.postURL=postURL;
-		this.parameterList=parameterList;
+	public NetworkActivity(Activity mActivity, String postURL, String parameterList[][], String activityType){
+		if(activityType.equals("Login")){
+			Log.w("Hey",mActivity.getClass().getName());
+			this.LoginActivity=(Login) mActivity;
+			this.postURL=postURL;
+			this.parameterList=parameterList;
+			this.activityType=activityType;
+		}
+		else{
+			Log.w("Hey2",mActivity.getClass().getName());
+			this.mActivity= (MainActivity) mActivity;
+			this.postURL=postURL;
+			this.parameterList=parameterList;
+			this.activityType=activityType;
+		}
 	}
 	
 	
-	protected String doInBackground(Void... params) {
+	protected Void doInBackground(Void... params) {
 		
 		httpPost();
-		Log.w("Got Here", "Got here");
-		return st;
+		return null;
 	}
 	
-	protected String onPostExecute()  {
-		return st;
+	protected void onPostExecute(Void Result){
+		if(activityType.equals("Login")){
+			LoginActivity.auth(st);
+		}
+		else if(activityType.equals("MainActivity")){
+			tv=(TextView)mActivity.findViewById(R.id.tv1);
+			tv.setText(st);
+		}
 	}
 	
 	
@@ -57,7 +75,10 @@ public class NetworkActivity extends AsyncTask<Void,Void,String> {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			
 			for(String iteration[]: parameterList)	{
+				Log.w("Iterate", "Iterate");
 				nameValuePairs.add(new BasicNameValuePair(iteration[0],iteration[1]));
+				Log.w("Ryan",iteration[0]);
+				Log.w("Ryan",iteration[1]);
 			}
 			
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

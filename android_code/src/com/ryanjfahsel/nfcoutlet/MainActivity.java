@@ -2,6 +2,8 @@ package com.ryanjfahsel.nfcoutlet;
 
 
 
+import java.util.concurrent.ExecutionException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -16,6 +18,7 @@ import com.ryanjfahsel.nfcoutlet.R;
 //Designed by Ryan, Colin, and Ramya
 public class MainActivity extends Activity {
 	MainActivity mActivity = this;
+	String paramList[][] = {{"nfcid","902584465"},{"username","rfahsel3"},{"password","katie"}};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +28,8 @@ public class MainActivity extends Activity {
 	    button.setOnClickListener(new View.OnClickListener() {
 	        public void onClick(View v) {
 	            // Perform action on click
-	        	new NetworkActivity(mActivity).get();
+	        	
+				new NetworkActivity( mActivity, "http://ryanjfahsel.com/index.php", paramList, "MainActivity").execute();
 	        	//Add Text
 	        	TextView text = (TextView)findViewById(R.id.tv1);
 	        	
