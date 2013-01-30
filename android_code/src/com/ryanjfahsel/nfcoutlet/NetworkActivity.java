@@ -17,6 +17,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.ryanjfahsel.nfcoutlet.R;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -25,20 +26,22 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 
 	private String st;
 	private TextView tv;
-	private MainActivity mActivity;
-	public NetworkActivity(MainActivity mActivity)
-	{
-		this.mActivity=mActivity;
+	private Activity activity;
+	
+	public NetworkActivity(Activity mActivity){
+		this.activity=mActivity;
 	}
 	
+	
 	protected Void doInBackground(Void... params) {
+		
 		postData("http://www.ryanjfahsel.com/index.php", "902563529","rfahsel3","Katie sucks");
 		Log.w("Got Here", "Got here");
 		return null;
 	}
 	
 	protected void onPostExecute(Void result)  {
-		tv = (TextView)mActivity.findViewById(R.id.tv1);
+		tv = (TextView)activity.findViewById(R.id.tv1);
 		tv.setText(st);
 	}
 	

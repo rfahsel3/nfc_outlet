@@ -7,5 +7,10 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="httpResponse">Response</string>
+    <string name="nfc_outlet_descr">Logo</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">New to NFCOutlet? Register here</string>
 
 </resources>
