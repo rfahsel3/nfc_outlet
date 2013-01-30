@@ -28,9 +28,9 @@ public class NetworkActivity extends AsyncTask<Void,Void,String> {
 	private TextView tv;
 	private Activity activity;
 	String postURL;
-	List<List<String>> parameterList;
+	String parameterList[][];
 	
-	public NetworkActivity(Activity mActivity, String postURL, List<List<String>> parameterList){
+	public NetworkActivity(Activity mActivity, String postURL, String parameterList[][]){
 		this.activity=mActivity;
 		this.postURL=postURL;
 		this.parameterList=parameterList;
@@ -56,8 +56,8 @@ public class NetworkActivity extends AsyncTask<Void,Void,String> {
 		try{
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			
-			for(List<String> iteration: parameterList)	{
-				nameValuePairs.add(new BasicNameValuePair(iteration.get(0),iteration.get(1)));
+			for(String iteration[]: parameterList)	{
+				nameValuePairs.add(new BasicNameValuePair(iteration[0],iteration[1]));
 			}
 			
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
