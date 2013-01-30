@@ -22,39 +22,44 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
-public class NetworkActivity extends AsyncTask<Void,Void,Void> {
+public class NetworkActivity extends AsyncTask<Void,Void,String> {
 
 	private String st;
 	private TextView tv;
 	private Activity activity;
+	String postURL;
+	List<List<String>> parameterList;
 	
-	public NetworkActivity(Activity mActivity){
+	public NetworkActivity(Activity mActivity, String postURL, List<List<String>> parameterList){
 		this.activity=mActivity;
+		this.postURL=postURL;
+		this.parameterList=parameterList;
 	}
 	
 	
-	protected Void doInBackground(Void... params) {
+	protected String doInBackground(Void... params) {
 		
-		postData("http://www.ryanjfahsel.com/index.php", "902563529","rfahsel3","Katie sucks");
+		httpPost();
 		Log.w("Got Here", "Got here");
-		return null;
+		return st;
 	}
 	
-	protected void onPostExecute(Void result)  {
-		tv = (TextView)activity.findViewById(R.id.tv1);
-		tv.setText(st);
+	protected String onPostExecute()  {
+		return st;
 	}
 	
 	
-	public void postData(String postURL, String nfc_id, String username, String passwd){
+	public void httpPost(){
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(postURL);
 		
 		try{
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			nameValuePairs.add(new BasicNameValuePair("nfcid", nfc_id));
-			nameValuePairs.add(new BasicNameValuePair("username", username));
-			nameValuePairs.add(new BasicNameValuePair("passwd", passwd));
+			
+			for(List<String> iteration: parameterList)	{
+				nameValuePairs.add(new BasicNameValuePair(iteration.get(0),iteration.get(1)));
+			}
+			
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse response = httpclient.execute(httppost);
 			String line = "";
