@@ -21,25 +21,25 @@ import android.widget.Toast;
 import com.ryanjfahsel.nfcoutlet.R;
 
 public class Login extends Activity {
-	public static final String USERNAME = "Username";
-	public static final String PASSWORD = "Password";
 	Login loginActivity =this;
 	String networkMessage = "0";
 	String usernameStr;
 	String passwordStr;
-	
+    public static final String PREF_FILE_NAME = "PrefFile";
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		//Remove title bar
+		
+		
+		//Removes title bar
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
 		
 		//Check to see if already logged in
-		SharedPreferences username = getSharedPreferences(USERNAME, 0);
-		SharedPreferences password = getSharedPreferences(PASSWORD, 0);
-		if(username.getString("username", "").toString().length()>0 && password.getString("password","").toString().length()>0){
+		SharedPreferences preferences = getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE);
+		if(preferences.getString("Unm", "").toString().length()>0 && preferences.getString("Psw","").toString().length()>0){
 			Intent intent = new Intent(Login.this, MainActivity.class);
 			startActivity(intent);
 		}
@@ -75,16 +75,16 @@ public class Login extends Activity {
 	}
 	
 	public void auth(String str){
+		SharedPreferences preferences = getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE);
 		if(str.equals("1")){
 			//Authenticated
 			//Save username and password
-			Editor usernameEditor = getSharedPreferences(USERNAME, 0).edit();
-			Editor passwordEditor = getSharedPreferences(PASSWORD, 0).edit();
-			usernameEditor.putString(USERNAME, usernameStr);
-			passwordEditor.putString(PASSWORD, passwordStr);
-			usernameEditor.commit();
-			passwordEditor.commit();
+			SharedPreferences.Editor editor =preferences.edit();
+			editor.putString("Unm",usernameStr);              
+			editor.putString("Psw",passwordStr);   
+			editor.commit();
 			
+			Log.w("Look", preferences.getString("Unm","not found"));
 			//Go to MainActicity
 			Intent intent = new Intent(Login.this, MainActivity.class);
 			startActivity(intent);
