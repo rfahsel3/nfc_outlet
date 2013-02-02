@@ -33,6 +33,15 @@
             </intent-filter>
             <meta-data android:name="android.nfc.action.TECH_DISCOVERED" android:resource="@xml/nfc_filter"/>
         </activity>
+        <activity
+            android:name="com.ryanjfahsel.nfcoutlet.Tool"
+            android:screenOrientation="portrait"
+            android:label="@string/tool" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

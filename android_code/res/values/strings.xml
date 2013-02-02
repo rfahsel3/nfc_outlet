@@ -14,5 +14,10 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">New to NFCOutlet? Register here</string>
+    <string name="tool_name_label"><b>Tool Name:</b></string>
+    <string name="tool_id_label"><b>Tool Id:</b></string>
+    <string name="tool_descr_label"><b>Tool Description:</b></string>
+    <string name="stop_tool_button">Stop Tool</string>
+    <string name="tool">Tool</string>
 
 </resources>

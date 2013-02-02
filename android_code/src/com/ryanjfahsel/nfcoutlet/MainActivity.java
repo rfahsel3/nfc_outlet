@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -109,7 +111,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-	
+	//This is where stuff happens after recognizing nfc tag
 	public void resolveIntent(Intent intent) {
 	
         Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -125,9 +127,9 @@ public class MainActivity extends Activity {
         Log.w("test", nfcid);
         
         final String paramList2[][] = {{"nfcid",nfcid},{"username", username},{"password",password}};
-        new NetworkActivity( mActivity, "http://ryanjfahsel.com/index.php", paramList2, "MainActivity").execute();
+        new NetworkActivity( mActivity, "http://ryanjfahsel.com/requestToStart.php", paramList2, "MainActivity").execute();
       //Add Text
-    	TextView text = (TextView)findViewById(R.id.tv1);
+      //TextView text = (TextView)findViewById(R.id.tv1);
 	}
 	
 	@Override
@@ -162,6 +164,28 @@ public class MainActivity extends Activity {
         }
 
         return stringBuilder.toString();
+    }
+    //authenticates to use tool
+    public void authTool(String str){
+    	//splits str by ","
+    	String [] arrayStr = str.split(",");
+    	if(arrayStr[0].equals("1")){
+    		//Starts Tool Activity
+    		Intent intent = new Intent(MainActivity.this, Tool.class);
+    		Bundle bundle = new Bundle();
+    		bundle.putString("toolId", arrayStr[1]);
+    		bundle.putString("toolName", arrayStr[2]);
+    		bundle.putString("toolDescr", arrayStr[3]);
+    		intent.putExtras(bundle);
+			startActivity(intent);
+    	}
+    	else{
+    		Context context = getApplicationContext();
+			int duration = Toast.LENGTH_LONG;
+
+			Toast toast = Toast.makeText(context, arrayStr[0], duration);
+			toast.show();
+    	}
     }
 
 }

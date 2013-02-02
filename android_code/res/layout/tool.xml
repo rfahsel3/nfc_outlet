@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@layout/alum_repeating">
+        <!--Header Start-->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@layout/header_gradient"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip">
+            	<!-- Logo Start -->
+            	<ImageView android:src="@drawable/nfc_outlet"
+            	    android:contentDescription="@string/nfc_outlet_descr"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_marginLeft="10dip"/>
+            	<!-- logo Ends -->
+
+            	<Button
+            	    android:id="@+id/button_logout"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_alignParentRight="true"
+            	    android:text="@string/button_logout" />
+ 		</RelativeLayout>
+ 		<!-- Header Ends -->
+ 		
+        <!-- Body Start -->
+        <LinearLayout 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+       	    android:id="@+id/body"
+            android:orientation="vertical"
+            android:padding="10dip" >
+            	<!-- Tool Name Start -->
+            	<LinearLayout 
+            	   	xmlns:android="http://schemas.android.com/apk/res/android"
+            		android:layout_width="match_parent"
+           			android:layout_height="wrap_content"
+       	    		android:id="@+id/tool_name"
+		            android:orientation="horizontal"
+		            android:padding="10dip" >
+		            	<TextView android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:textColor="#372c24"
+                			android:textSize="30sp"
+                			android:text="@string/tool_name_label"/>
+		            	<TextView android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:textColor="#372c24"
+                			android:textSize="30sp"
+                			android:paddingLeft="5dip"
+                			android:id="@+id/tool_name_tv"/> 	
+            	</LinearLayout>
+            	<!-- Tool Name Ends -->
+            	
+            	<!-- Tool Id Start -->
+            	<LinearLayout 
+            	   	xmlns:android="http://schemas.android.com/apk/res/android"
+            		android:layout_width="match_parent"
+           			android:layout_height="wrap_content"
+       	    		android:id="@+id/tool_id"
+		            android:orientation="horizontal"
+		            android:padding="10dip" >
+		            	<TextView android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:textColor="#372c24"
+                			android:textSize="30sp"
+                			android:text="@string/tool_id_label"/>
+		            	<TextView android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:textColor="#372c24"
+                			android:textSize="30sp"
+                			android:paddingLeft="5dip"
+                			android:id="@+id/tool_id_tv"/> 	
+            	</LinearLayout>
+            	<!-- Tool Id Ends -->
+            	
+            	<!-- Tool Descr Start -->
+            	<LinearLayout 
+            	   	xmlns:android="http://schemas.android.com/apk/res/android"
+            		android:layout_width="match_parent"
+           			android:layout_height="wrap_content"
+       	    		android:id="@+id/tool_descr"
+		            android:orientation="horizontal"
+		            android:padding="10dip" >
+		            	<TextView android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:textColor="#372c24"
+                			android:textSize="30sp"
+                			android:text="@string/tool_descr_label"/>
+		            	<TextView android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:textColor="#372c24"
+                			android:textSize="30sp"
+                			android:paddingLeft="5dip"
+                			android:id="@+id/tool_descr_tv"/> 	
+            	</LinearLayout>
+            	<!-- Tool Descr Ends -->
+            	
+            	<!-- Stop Button Start -->
+				<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   					 android:layout_width="fill_parent"
+        			android:layout_height="fill_parent" >
+            		<Button
+	            	    android:id="@+id/StopTool"
+	            	    android:layout_width="wrap_content"
+	            	    android:layout_height="wrap_content"
+	            	    android:layout_centerHorizontal="true"
+	            		android:layout_centerVertical="true"
+	            		android:textColor="#FF0000"
+	            	    android:layout_marginTop="20dip"
+	            	    android:text="@string/stop_tool_button"
+	            	    android:textSize="20sp" />
+	            </RelativeLayout>
+            	
+        </LinearLayout>
+        <!-- Body Ends -->
+        
+
+</RelativeLayout>

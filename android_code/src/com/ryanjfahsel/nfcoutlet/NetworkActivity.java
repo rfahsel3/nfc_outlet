@@ -61,8 +61,9 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 			LoginActivity.auth(st);
 		}
 		else if(activityType.equals("MainActivity")){
-			tv=(TextView)mActivity.findViewById(R.id.tv1);
-			tv.setText(st);
+			//tv=(TextView)mActivity.findViewById(R.id.tv1);
+			//tv.setText(st);
+			mActivity.authTool(st);
 		}
 	}
 	
