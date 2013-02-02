@@ -25,16 +25,24 @@ public class Login extends Activity {
 	String networkMessage = "0";
 	String usernameStr;
 	String passwordStr;
+	
+	//Shared Prefs
     public static final String PREF_FILE_NAME = "PrefFile";
+    
+    // Editor for Shared preferences
+    Editor editor;
+ 
+    // Context
+    Context _context;
+    
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		
-		
 		//Removes title bar
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.login);
 		
 		//Check to see if already logged in
@@ -57,7 +65,7 @@ public class Login extends Activity {
 				String paramList[][] = {{"username",usernameStr}, {"password",passwordStr}};
 				if(usernameEdit.getText().toString().length()>0 && passwordEdit.getText().toString().length()>0){
 					Log.w("Got Here", "Got here");
-					new NetworkActivity(loginActivity, "http://ryanjfahsel.com/checkAuth.php", paramList, "Login").execute();
+					new NetworkActivity(loginActivity, "http://ryanjfahsel.com/login.php", paramList, "Login").execute();
 					SystemClock.sleep(1000);
 					
 				}
@@ -79,7 +87,7 @@ public class Login extends Activity {
 		if(str.equals("1")){
 			//Authenticated
 			//Save username and password
-			SharedPreferences.Editor editor =preferences.edit();
+			editor =preferences.edit();
 			editor.putString("Unm",usernameStr);              
 			editor.putString("Psw",passwordStr);   
 			editor.commit();
@@ -104,6 +112,21 @@ public class Login extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	public void logoutUser(SharedPreferences pref, MainActivity activity){
+		//clear editor
+		
+		editor =pref.edit();
+		editor.clear();
+		editor.commit();
+		//After Logout redirect user
+		Intent intent = new Intent(activity, Login.class);
+		//Close Activities
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		//Start Activity
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		activity.startActivity(intent);
 	}
 
 }

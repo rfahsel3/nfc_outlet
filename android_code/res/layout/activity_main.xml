@@ -1,20 +1,79 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".MainActivity" >
-
-    <Button
-        android:id="@+id/button_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_send" />
-    
-    <TextView 
-        android:id ="@+id/tv1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/httpResponse" />
+        android:layout_height="fill_parent"
+        android:background="@layout/alum_repeating">
+        <!--Header Start-->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@layout/header_gradient"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip">
+            	<!-- Logo Start -->
+            	<ImageView android:src="@drawable/nfc_outlet"
+            	    android:contentDescription="@string/nfc_outlet_descr"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_marginLeft="10dip"/>
+            	<!-- logo Ends -->
+
+            	<Button
+            	    android:id="@+id/button_logout"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_alignParentRight="true"
+            	    android:text="@string/button_logout" />
+
+        </RelativeLayout>
+        <!-- LinearLayout Ends --> 
         
-</LinearLayout>
+        <!-- Body Start --> 
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+       	    android:id="@+id/body"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+           	<Button
+        		android:id="@+id/button_send"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/button_send" />
+    
+            <TextView 
+        		android:id ="@+id/tv1"
+        		android:layout_width="fill_parent"
+       			android:layout_height="wrap_content"
+        		android:text="@string/httpResponse" />
+            
+        </LinearLayout>
+        <!-- Body Ends -->
+        
+        <!-- Footer Start -->
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/body">
+            		<!-- Logo Start -->
+
+            		<!-- logo Ends -->
+
+            		<ImageView
+            		    android:layout_width="wrap_content"
+            		    android:layout_height="wrap_content"
+            		    android:layout_centerHorizontal="true"
+            		    android:layout_centerVertical="true"
+            		    android:padding="20dip"
+            		    android:contentDescription="@string/logo_descr"
+            		    android:src="@drawable/nfc" />
+
+        </RelativeLayout>
+        <!-- Footer Ends -->
+    
+    
+        
+</RelativeLayout>

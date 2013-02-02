@@ -18,6 +18,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,6 +28,9 @@ import com.ryanjfahsel.nfcoutlet.R;
 //Designed by Ryan, Colin, and Ramya
 public class MainActivity extends Activity {
 	MainActivity mActivity = this;
+	//Login Class
+	Login LoginActivity=new Login();
+	
 	public static final String PREF_FILE_NAME = "PrefFile";
 	NfcAdapter mAdapter;
 	PendingIntent mPendingIntent;
@@ -37,13 +41,19 @@ public class MainActivity extends Activity {
 	String nfcid;
 	String username;
 	String password;
+	SharedPreferences preferences;
 	
-	@SuppressLint("NewApi")
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		//Removes title bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_main);
-		SharedPreferences preferences = getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE);
+		preferences = getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE);
 		//Vars
 		username = preferences.getString("Unm","not found");
 		password = preferences.getString("Psw","not found");
@@ -68,7 +78,6 @@ public class MainActivity extends Activity {
         
         intent = getIntent();
         
-        
 		
 		//Temp Button Code
 		final Button button = (Button) findViewById(R.id.button_send);
@@ -82,6 +91,16 @@ public class MainActivity extends Activity {
 	        	
 	        }
 	    });
+	    
+	    //LogoutButton Code
+	    final Button logoutButton = (Button) findViewById(R.id.button_logout);
+	    logoutButton.setOnClickListener(new View.OnClickListener() {
+	    	public void onClick(View v) {
+	    		// Perform action on click
+	    		LoginActivity.logoutUser(preferences, mActivity);
+	    		
+	  	  	}
+	    });
 	}
 
 	@Override
@@ -92,13 +111,8 @@ public class MainActivity extends Activity {
 	}
 	
 	public void resolveIntent(Intent intent) {
-	// 1) Parse the intent and get the action that triggered this intent
-    //String action = intent.getAction();
-    // 2) Check if it was triggered by a tag discovered interruption.
-    //  3) Get an instance of the TAG from the NfcAdapter
+	
         Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-   // 4) Get an instance of the Mifare classic card from this TAG intent
-        //MifareClassic mfc = MifareClassic.get(tagFromIntent);
         
         byte[] id = tagFromIntent.getId();
         String idStr = tagFromIntent.toString();

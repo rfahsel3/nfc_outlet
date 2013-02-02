@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff">
+        android:background="@layout/alum_repeating">
         <!--Header Start-->
         <LinearLayout
             android:id="@+id/header"
@@ -24,22 +19,19 @@
             	    android:layout_marginLeft="10dip"/>
             	<!-- logo Ends -->
         </LinearLayout>
-        <!-- LinearLayout Ends -->
-        <!-- Footer Start -->
-        <LinearLayout android:id="@+id/footer"
-                android:layout_width="fill_parent"
-                android:layout_height="90dip"
-                android:layout_alignParentBottom="true">
-        </LinearLayout>
-        <!-- Footer Ends -->
-        <!-- Login Form -->
+        <!-- LinearLayout Ends -->  
+        
+      <!-- Login Form -->
+
         <LinearLayout
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dip"
-          android:layout_below="@id/header">
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+       	    android:id="@+id/form"
+            android:orientation="vertical"
+            android:padding="20dip" >
+
           <!--  Username Label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -67,23 +59,45 @@
           <Button android:id="@+id/loginButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="20dip"
                 android:text="@string/login"/>
           <!-- Link to Registration Screen -->
           <TextView android:id="@+id/link_to_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dip"
-                android:layout_marginBottom="40dip"
+                android:layout_marginBottom="10dip"
                 android:text="@string/register"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="#0b84aa"/>
  
         </LinearLayout>
-        <!-- Login Form Ends -->
+        <!-- Login Form Ends -->  
         
-        
+        <!-- Footer Start -->
+
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/form">
+            		<!-- Logo Start -->
+
+            		<!-- logo Ends -->
+
+            		<ImageView
+            		    android:layout_width="wrap_content"
+            		    android:layout_height="wrap_content"
+            		    android:layout_centerHorizontal="true"
+            		    android:layout_centerVertical="true"
+            		    android:paddingLeft="10dip"
+            		    android:paddingRight="10dip"
+            		    android:paddingBottom="10dip"
+            		    android:contentDescription="@string/logo_descr"
+            		    android:src="@drawable/diagram" />
+
+        </RelativeLayout>
+        <!-- Footer Ends -->
     
 	</RelativeLayout>
-</ScrollView>
