@@ -7,7 +7,7 @@
     <string name="button_logout">Logout</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="httpResponse">Response</string>
+    <string name="httpResponse">Welome, to get started tap your phone on a registered nfc sticker</string>
     <string name="nfc_outlet_descr">Logo</string>
     <string name="logo_descr">Big Logo</string>
     <string name="username">Username</string>

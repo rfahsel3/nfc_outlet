@@ -25,9 +25,9 @@ import android.widget.TextView;
 public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 
 	private String st;
-	private TextView tv;
 	private Login LoginActivity;
 	private MainActivity mActivity;
+	private Tool ToolActivity;
 	String postURL;
 	String parameterList[][];
 	String activityType;
@@ -40,9 +40,16 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 			this.parameterList=parameterList;
 			this.activityType=activityType;
 		}
-		else{
+		else if(activityType.equals("MainActivity")){
 			Log.w("Hey2",mActivity.getClass().getName());
 			this.mActivity= (MainActivity) mActivity;
+			this.postURL=postURL;
+			this.parameterList=parameterList;
+			this.activityType=activityType;
+		}
+		else if(activityType.equals("Tool")){
+			Log.w("Hey2",mActivity.getClass().getName());
+			this.ToolActivity= (Tool) mActivity;
 			this.postURL=postURL;
 			this.parameterList=parameterList;
 			this.activityType=activityType;
@@ -61,9 +68,10 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 			LoginActivity.auth(st);
 		}
 		else if(activityType.equals("MainActivity")){
-			//tv=(TextView)mActivity.findViewById(R.id.tv1);
-			//tv.setText(st);
 			mActivity.authTool(st);
+		}
+		else if(activityType.equals("Tool")){
+			ToolActivity.authStop(st);
 		}
 	}
 	

@@ -114,9 +114,8 @@ public class Login extends Activity {
 		return true;
 	}
 	
-	public void logoutUser(SharedPreferences pref, MainActivity activity){
+	public void logoutUser(SharedPreferences pref, Activity activity){
 		//clear editor
-		
 		editor =pref.edit();
 		editor.clear();
 		editor.commit();

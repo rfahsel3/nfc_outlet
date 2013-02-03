@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 		//Vars
 		username = preferences.getString("Unm","not found");
 		password = preferences.getString("Psw","not found");
-		final String paramList2[][] = {{"nfcid","902584465"},{"username", username},{"password",password}};
+		
 		
 		//NFC Code
 		mAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -81,18 +81,6 @@ public class MainActivity extends Activity {
         intent = getIntent();
         
 		
-		//Temp Button Code
-		final Button button = (Button) findViewById(R.id.button_send);
-	    button.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	            // Perform action on click
-	        	
-				new NetworkActivity( mActivity, "http://ryanjfahsel.com/index.php", paramList2, "MainActivity").execute();
-	        	//Add Text
-	        	TextView text = (TextView)findViewById(R.id.tv1);
-	        	
-	        }
-	    });
 	    
 	    //LogoutButton Code
 	    final Button logoutButton = (Button) findViewById(R.id.button_logout);
