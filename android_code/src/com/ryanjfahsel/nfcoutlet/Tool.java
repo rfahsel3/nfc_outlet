@@ -62,6 +62,7 @@ public class Tool extends Activity {
 	    	public void onClick(View v) {
 	    		// Perform action on click
 	    		new NetworkActivity(ToolActivity, "http://ryanjfahsel.com/stop.php", paramListTool, "Tool").execute();
+	    		
 	    		LoginActivity.logoutUser(preferences, ToolActivity);
 	    		
 	  	  	}
@@ -89,8 +90,13 @@ public class Tool extends Activity {
 			
 			//Set text view stating successful stop
 			String msg = "Thanks for stopping "+ toolName +" to use another tool tap your phone on a registered nfc sticker";
-			tv=(TextView)mActivity.findViewById(R.id.tv1);
-			tv.setText(msg);
+			//tv=(TextView)mActivity.findViewById(R.id.tv1);
+			//tv.setText(msg);
+			Context context = getApplicationContext();
+			int duration = Toast.LENGTH_LONG;
+			
+			Toast toast = Toast.makeText(context,msg, duration);
+			toast.show();
 		}
 		else{
 			//If machine was not turned off, send message
