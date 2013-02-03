@@ -71,16 +71,18 @@ void loop()
   int auth=0;
   
   //Loop until carriage return is found
-  while(c!=10)
+  while(c!=10 and total<500)
   {
     if (client.available()) {
       c = client.read();
       Serial.print(c);
       line[total]=c;
+      Serial.println(total);
       total+=1;
     }
-    //Serial.println("STUCK HERE");
-    //Serial.println(status);
+    else  {
+      total+=1;
+    }
   }
   Serial.println("GOT HERE NEW LINE");
   Serial.println("Total length of this line is: ");
@@ -88,7 +90,7 @@ void loop()
   //Control LED depending on output
   if(status==1)  {
     Serial.println("Inside status loop");
-    auth=line[total-1];
+    auth=line[0];
     Serial.println("Auth character is");
     Serial.println(auth);   
     //If, one on the server *(ASCII value for 1 is 49), power the led high
