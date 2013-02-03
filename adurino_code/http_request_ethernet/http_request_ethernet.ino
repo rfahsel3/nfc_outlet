@@ -43,7 +43,12 @@ void setup() {
   // give the Ethernet shield a second to initialize:
   delay(1000);
   Serial.println("connecting...");
+}
 
+void loop()
+{
+  
+  int doneWithRead=0;
   // if you get a connection, report back via serial:
   if (client.connect(server, 80)) {
     Serial.println("connected");
@@ -55,12 +60,9 @@ void setup() {
     // kf you didn't get a connection to the server:
     Serial.println("connection failed");
   }
-}
-
-void loop()
-{
-  // if there are incoming bytes available 
-  // from the server, read them and print them:
+  
+  while(doneWithRead==0)
+  {
   //Temporary variable to keep tracke of each letter
   char c=0;
   //Counter for how long line is
@@ -97,25 +99,23 @@ void loop()
     if (auth==49)  {
       pinMode(6,OUTPUT);
       digitalWrite(6, HIGH);
-      delay(10000);
+      delay(1000);
+    }
+    else  {
+      pinMode(6,OUTPUT);
+      digitalWrite(6,LOW); 
     }
     status=0;
+    Serial.println();
+    Serial.println("disconnecting.");
+    client.stop();
+    doneWithRead=1;
   }
-  
   //When indicator is detected, take next value on next loop
   if(total==2)  {
     status=1;
     Serial.println("SET STATUS");
   }
 
-  // if the server's disconnected, stop the client:
-  if (!client.connected()) {
-    Serial.println();
-    Serial.println("disconnecting.");
-    client.stop();
-
-    // do nothing forevermore:
-    for(;;)
-      ;
   }
 }
