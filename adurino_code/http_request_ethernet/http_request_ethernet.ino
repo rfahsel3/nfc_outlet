@@ -48,7 +48,7 @@ void setup() {
   if (client.connect(server, 80)) {
     Serial.println("connected");
     // Make a HTTP request:
-    client.println("GET /index2.php HTTP/1.0");
+    client.println("GET /checkPower.php?tid=1 HTTP/1.0");
     client.println();
   } 
   else {
@@ -79,22 +79,31 @@ void loop()
       line[total]=c;
       total+=1;
     }
+    //Serial.println("STUCK HERE");
+    //Serial.println(status);
   }
-  
+  Serial.println("GOT HERE NEW LINE");
+  Serial.println("Total length of this line is: ");
+  Serial.println(total);
   //Control LED depending on output
   if(status==1)  {
-    auth=line[total-2];
+    Serial.println("Inside status loop");
+    auth=line[total-1];
+    Serial.println("Auth character is");
+    Serial.println(auth);   
     //If, one on the server *(ASCII value for 1 is 49), power the led high
     if (auth==49)  {
       pinMode(6,OUTPUT);
       digitalWrite(6, HIGH);
       delay(10000);
     }
+    status=0;
   }
   
   //When indicator is detected, take next value on next loop
   if(total==2)  {
     status=1;
+    Serial.println("SET STATUS");
   }
 
   // if the server's disconnected, stop the client:
