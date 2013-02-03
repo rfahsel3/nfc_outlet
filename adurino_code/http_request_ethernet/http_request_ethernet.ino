@@ -20,6 +20,7 @@
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
 byte mac[] = {  0x90, 0xA2, 0xDA, 0x00, 0xD8, 0xF8 };
 IPAddress server(128,61,105,86); // Google
+int mode=0;
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server 
@@ -47,19 +48,42 @@ void setup() {
 
 void loop()
 {
-  
+  int pinA=6;
+  int pinB=7;
+  char pinALink[200]="GET /checkPower.php?tid=1 HTTP/1.0";
+  char pinBLink[200]="GET /checkPower.php?tid=2 HTTP/1.0";
   int doneWithRead=0;
+  int activePin;
   // if you get a connection, report back via serial:
-  if (client.connect(server, 80)) {
-    Serial.println("connected");
-    // Make a HTTP request:
-    client.println("GET /checkPower.php?tid=1 HTTP/1.0");
-    client.println();
-  } 
-  else {
-    // kf you didn't get a connection to the server:
-    Serial.println("connection failed");
+  if(mode%2==0)  {
+    Serial.println("Pin A");
+    if (client.connect(server, 80)) {
+      Serial.println("connected");
+      // Make a HTTP request:
+      client.println(pinALink);
+      client.println();
+      activePin=pinA;
+    } 
+    else {
+      // kf you didn't get a connection to the server:
+      Serial.println("connection failed");
+    }
   }
+  else  {
+    Serial.println("Pin B");
+    if (client.connect(server, 80)) {
+      Serial.println("connected");
+      // Make a HTTP request:
+      client.println(pinBLink);
+      client.println();
+      activePin=pinB;
+    } 
+    else {
+      // kf you didn't get a connection to the server:
+      Serial.println("connection failed");
+    }
+  } 
+  mode+=1;
   
   while(doneWithRead==0)
   {
@@ -67,13 +91,15 @@ void loop()
   char c=0;
   //Counter for how long line is
   int total=0;
+  //Blanks
+  int blanks=0;
   //Keeps track of current line
   char line[500];
   //Auth value
   int auth=0;
   
   //Loop until carriage return is found
-  while(c!=10 and total<500)
+  while(c!=10 and blanks<10)
   {
     if (client.available()) {
       c = client.read();
@@ -83,7 +109,7 @@ void loop()
       total+=1;
     }
     else  {
-      total+=1;
+      blanks+=1;
     }
   }
   Serial.println("GOT HERE NEW LINE");
@@ -97,13 +123,12 @@ void loop()
     Serial.println(auth);   
     //If, one on the server *(ASCII value for 1 is 49), power the led high
     if (auth==49)  {
-      pinMode(6,OUTPUT);
-      digitalWrite(6, HIGH);
-      delay(1000);
+      pinMode(activePin,OUTPUT);
+      digitalWrite(activePin, HIGH);
     }
     else  {
-      pinMode(6,OUTPUT);
-      digitalWrite(6,LOW); 
+      pinMode(activePin,OUTPUT);
+      digitalWrite(activePin,LOW); 
     }
     status=0;
     Serial.println();
