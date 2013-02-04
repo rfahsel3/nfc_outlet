@@ -3,10 +3,13 @@
 require('res/setup.php');
 $tid=$_REQUEST[tid];
 $query=mysql_query("UPDATE Tools SET enable=0 WHERE tid=$tid");
+if(!$query)     {
+        echo "There was a problem turning the tool off. Please tell the administrator the following: ".mysql_error;
+}
 if(mysql_affected_rows()==0)	{
 	echo "The tool appears to already be off. If it is not, please contact an administrator";
 }
-if(!$query)	{
-	echo "There was a problem turning the tool off. Please tell the administrator the following: ".mysql_error;
+else	{
+	echo "1";
 }
 ?>
