@@ -65,7 +65,7 @@ public class Login extends Activity {
 				String paramList[][] = {{"username",usernameStr}, {"password",passwordStr}};
 				if(usernameEdit.getText().toString().length()>0 && passwordEdit.getText().toString().length()>0){
 					Log.w("Got Here", "Got here");
-					new NetworkActivity(loginActivity, "http://ryanjfahsel.com/login.php", paramList, "Login").execute();
+					new NetworkActivity(loginActivity, "http://nfc.ryanjfahsel.com/login.php", paramList, "Login").execute();
 					SystemClock.sleep(1000);
 					
 				}

@@ -61,7 +61,7 @@ public class Tool extends Activity {
 	    logoutButton.setOnClickListener(new View.OnClickListener() {
 	    	public void onClick(View v) {
 	    		// Perform action on click
-	    		new NetworkActivity(ToolActivity, "http://ryanjfahsel.com/stop.php", paramListTool, "Tool").execute();
+	    		new NetworkActivity(ToolActivity, "http://nfc.ryanjfahsel.com/stop.php", paramListTool, "Tool").execute();
 	    		
 	    		LoginActivity.logoutUser(preferences, ToolActivity);
 	    		
@@ -75,7 +75,7 @@ public class Tool extends Activity {
 	    		// Perform action on click
 	    		// HTTPPost to Stop
 	    		
-	    		new NetworkActivity(ToolActivity, "http://ryanjfahsel.com/stop.php", paramListTool, "Tool").execute();
+	    		new NetworkActivity(ToolActivity, "http://nfc.ryanjfahsel.com/stop.php", paramListTool, "Tool").execute();
 	    		
 	  	  	}
 	    });

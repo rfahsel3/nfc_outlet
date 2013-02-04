@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
         Log.w("test", nfcid);
         
         final String paramList2[][] = {{"nfcid",nfcid},{"username", username},{"password",password}};
-        new NetworkActivity( mActivity, "http://ryanjfahsel.com/requestToStart.php", paramList2, "MainActivity").execute();
+        new NetworkActivity( mActivity, "http://nfc.ryanjfahsel.com/requestToStart.php", paramList2, "MainActivity").execute();
       //Add Text
       //TextView text = (TextView)findViewById(R.id.tv1);
 	}
