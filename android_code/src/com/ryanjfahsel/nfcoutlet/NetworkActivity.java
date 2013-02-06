@@ -84,10 +84,10 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			
 			for(String iteration[]: parameterList)	{
-				//Log.w("Iterate", "Iterate");
+				Log.w("Iterate", "Iterate");
 				nameValuePairs.add(new BasicNameValuePair(iteration[0],iteration[1]));
-				//Log.w("Ryan",iteration[0]);
-				//Log.w("Ryan",iteration[1]);
+				Log.w("Ryan",iteration[0]);
+				Log.w("Ryan",iteration[1]);
 			}
 			
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

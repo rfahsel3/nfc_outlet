@@ -4,9 +4,14 @@ package com.ryanjfahsel.nfcoutlet;
 
 import java.util.concurrent.ExecutionException;
 
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
+import android.nfc.tech.MifareUltralight;
+import android.nfc.tech.Ndef;
+import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -60,7 +65,6 @@ public class MainActivity extends Activity {
 		username = preferences.getString("Unm","not found");
 		password = preferences.getString("Psw","not found");
 		
-		
 		//NFC Code
 		mAdapter = NfcAdapter.getDefaultAdapter(this);
 		mPendingIntent = PendingIntent.getActivity(this, 0,
@@ -76,7 +80,8 @@ public class MainActivity extends Activity {
         };
 
         // Setup a tech list for all NfcF tags
-        mTechLists = new String[][] { new String[] { MifareClassic.class.getName() } };
+        mTechLists = new String[][] { new String[] { MifareUltralight.class.getName(), Ndef.class.getName(), NfcA.class.getName()},
+                new String[] { MifareClassic.class.getName(), Ndef.class.getName(), NfcA.class.getName()}};
         
         intent = getIntent();
         
@@ -106,7 +111,6 @@ public class MainActivity extends Activity {
         
         byte[] id = tagFromIntent.getId();
         String idStr = tagFromIntent.toString();
-        
         
       
         Log.w("Tag Id", id.toString());
@@ -156,6 +160,7 @@ public class MainActivity extends Activity {
     //authenticates to use tool
     public void authTool(String str){
     	//splits str by ","
+    	Log.w("AuthTool", str);
     	String [] arrayStr = str.split(",");
     	if(arrayStr[0].equals("1")){
     		//Starts Tool Activity
@@ -172,6 +177,7 @@ public class MainActivity extends Activity {
 			int duration = Toast.LENGTH_LONG;
 
 			Toast toast = Toast.makeText(context, arrayStr[0], duration);
+			Log.w("authTool",arrayStr[0] );
 			toast.show();
     	}
     }
