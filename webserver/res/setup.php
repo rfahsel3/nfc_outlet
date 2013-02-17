@@ -5,6 +5,10 @@ if (!$con)
   {
   die('Yikes! Cannot connect to the database: ' . mysql_error());
   }
+
 //Use correct databse
+else	{
 mysql_select_db("muc", $con);
+echo "SUCCESSFUL CONNECTION";
+}
 ?>
