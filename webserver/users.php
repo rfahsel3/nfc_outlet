@@ -1,5 +1,5 @@
 <?php
-require("res\setup.php");
+require("res/setup.php");
 $query = mysql_query("SELECT username from muc.Users");
 echo "<table border=1>";
 echo "<tr><th>Username</th></tr>";
