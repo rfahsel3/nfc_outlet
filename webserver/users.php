@@ -17,7 +17,7 @@ echo "</table>";
 echo "<form action='userProcess.php' method='post'>";
 echo "</br>Username: <input type='text' name='username'></br>";
 echo "Password: <input type='password' name='password'></br>";
-echo "<input type='submit'>";
+echo "</br><input type='submit'>";
 $goBack = "<input type='button' id='back_button' value='Back to Home'>";
 echo "<a href='index.php'>".$goBack."</a></br>";
 ?>
