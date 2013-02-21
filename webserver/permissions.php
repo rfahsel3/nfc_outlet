@@ -33,7 +33,7 @@ $queryTools=mysql_query("SELECT * from muc.Tools");
 echo "Tool Name: <select name='tool' value='Toolname'>";
 while ($rowsTools=mysql_fetch_array($queryTools)) {
 	$tool = $rowsTools['toolName'];
-	$tid = $rowsUsers['tid'];
+	$tid = $rowsTools['tid'];
 	//echo "<input type=hidden id=$tid name='tid' value='$tid'>";
 	//echo "<option id=$tid value=".$tid.">".$tool."</option>";
 	echo "<option name='tid' id=$tid value=".$tid.">".$tool."</option>";
