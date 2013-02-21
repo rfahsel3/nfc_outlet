@@ -1,5 +1,5 @@
 <?php
-require("res\setup.php");
+require("res/setup.php");
 echo "</br>You have successfully deleted this permission!</br>";
 $user = $_POST['user'];
 $tool = $_POST['tool']; 
