@@ -23,8 +23,6 @@ echo "Username: <select name='user' value='Username'>";
 while ($rowsUsers=mysql_fetch_array($queryUsers)) {
 	$user = $rowsUsers['username'];
 	$uid = $rowsUsers['uid'];
-	//echo "<input type=hidden id=$uid name='uid' value='$uid'>";
-	//echo "<option id=$uid value=".$uid.">".$user."</option>";
 	echo "<option name='uid' id=$uid value=".$uid.">".$user."</option>";
 }
 echo "</select></br>";
@@ -34,8 +32,6 @@ echo "Tool Name: <select name='tool' value='Toolname'>";
 while ($rowsTools=mysql_fetch_array($queryTools)) {
 	$tool = $rowsTools['toolName'];
 	$tid = $rowsTools['tid'];
-	//echo "<input type=hidden id=$tid name='tid' value='$tid'>";
-	//echo "<option id=$tid value=".$tid.">".$tool."</option>";
 	echo "<option name='tid' id=$tid value=".$tid.">".$tool."</option>";
 }
 echo "</select></br>";
