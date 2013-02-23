@@ -9,6 +9,5 @@ if (!$con)
 //Use correct databse
 else	{
 mysql_select_db("muc", $con);
-echo "SUCCESSFUL CONNECTION";
 }
 ?>
