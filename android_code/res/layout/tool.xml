@@ -87,19 +87,22 @@
             		android:layout_width="match_parent"
            			android:layout_height="wrap_content"
        	    		android:id="@+id/tool_descr"
-		            android:orientation="horizontal"
+		            android:orientation="vertical"
 		            android:padding="10dip" >
 		            	<TextView android:layout_width="wrap_content"
                 			android:layout_height="wrap_content"
                 			android:textColor="#372c24"
                 			android:textSize="30sp"
                 			android:text="@string/tool_descr_label"/>
-		            	<TextView android:layout_width="wrap_content"
-                			android:layout_height="wrap_content"
-                			android:textColor="#372c24"
-                			android:textSize="30sp"
-                			android:paddingLeft="5dip"
-                			android:id="@+id/tool_descr_tv"/> 	
+
+		            	<TextView
+		            	    android:id="@+id/tool_descr_tv"
+		            	    android:layout_width="wrap_content"
+		            	    android:layout_height="wrap_content"
+		            	    android:paddingLeft="5dip"
+		            	    android:textColor="#372c24"
+		            	    android:textSize="30sp" />
+ 	
             	</LinearLayout>
             	<!-- Tool Descr Ends -->
             	
