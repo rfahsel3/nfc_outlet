@@ -83,7 +83,7 @@ breaklinks=true,
 \maketitle
 
 \begin{abstract}
-In this project, an authorization system was implemented using the NFC technology on mobile devices. The motivation behind this research was to make authorization of tools in a lab easier and more effective. This way, users would be allowed to enter labs but restricted to use certain tools. Previous studies have looked into RFID and NFC technologies for many applications, such as for hospitals and virtual ticketing systems. In our work, we have implemented a system that controls a 120 volt outlet which will provide or restrict access to the user based on their credentials. We use the mobile device as an NFC reader and attach NFC stickers to each tool that act as tags. We implemented the hardware and software sides and a site that allows us to manage the user permissions. From this project, we learned that the NFC technology embedded in our phones is an effective way to transmit the credentials of users. In future work, we hope to...
+In this project, an authorization system was implemented using the NFC technology on mobile devices. The motivation behind this research was to make authorization of tools in a lab easier and more effective. This way, users would be allowed to enter labs, but certain tools would have restricted access. Previous studies have looked into RFID and NFC technologies for many applications, such as for hospitals and virtual ticketing systems. In our work, we have implemented a system that controls a 120 volt outlet, which will provide or restrict access to the user based on their credentials. We use the mobile device as an NFC reader and attach NFC stickers to each tool that act as tags. We implemented the hardware and software sides and a site that allows us to manage the user permissions. From this project, we learned that the NFC technology embedded in our phones is an effective way to transmit the credentials of users. In future work, we hope to add a tracking feature.
 \end{abstract}
 
 \keywords{
@@ -91,7 +91,7 @@ In this project, an authorization system was implemented using the NFC technolog
 %	\textcolor{red}{Mandatory section to be included in your final version.}
 }
 
-\category{H.5.m.}{}{}
+\category{K.6.5.}{}{}
 
 
 \terms{
@@ -110,7 +110,7 @@ The goal of this project was to create an access controlled, household 120v outl
 
 \subsection {Motivation}
 
-The idea of access control to locked areas via RFID is not a new idea; however, using NFC to control outlets is though. When Scott Gullivan came to give a presentation on project ideas; he expressed the desire to be able to grant access to the lab to a large set of people, while only allowing a subset of ‘trained’ users to use some of the more dangerous tools; however, Scott did not want to go purchase all new tools that had authentication built into them. Even if Scott was starting a new lab from scratch, he would not want to go and limit himself to only tools that have authentication built into them (which as far we know, do not even exist). There has to be a way to access control tools that already exist in the lab; the only way to do that is to control the power given to the tools. This creates a cheap and universal way (via a standard 120v plug) to grant a large group of people access to a space, while only allowing a subset of those people to use the devices within a space. 
+The idea of access control to locked areas via RFID is not a new idea; however, using NFC to control outlets is. When Scott Gullivan came to give a presentation on project ideas; he expressed the desire to be able to grant access to the lab to a large set of people, while only allowing a subset of ‘trained’ users to use some of the more dangerous tools; however, Scott did not want to go purchase all new tools that had authentication built into them. Even if Scott was starting a new lab from scratch, he would not want to go and limit himself to only tools that have authentication built into them (which as far we know, do not even exist). There has to be a way to access control tools that already exist in the lab; the only way to do that is to control the power given to the tools. This creates a cheap and universal way (via a standard 120v plug) to grant a large group of people access to a space, while only allowing a subset of those people to use the devices within a space. 
 
 NFC is the technology of choice for this control because it is way more robust than RFID. NFC tags can store much more data than RFID and NFC readers are becoming commonplace in phones, which is an object a majority of people carry around with them daily.
 
@@ -136,14 +136,20 @@ There are three main components to this project: an NFC enabled Android device, 
 \item Adurino powered circuit: Adurinos and basic relays are relatively cheap. Our group has agreed that the costs associated with buying these materials is less than \$100 total, which we are willing to absorb.
 \item Housing: We will use the tools in the protoying lab to create a box (most likely of acryllic, which is easily obtainable from Home Depot).
 \end{itemize}
-We believe we have all of our resources taken care of and are ready to begin this project.
 
 \subsection{Implementation}
 In order to implement this project, we first completed the database design, in which we included tables for storing the users of the application, the tools that our system would include, and the permissions specifying which users had access to those tools. 
 We established a connection to the server via our Android device.
 We programmed NFC tags and implemented the NFC component of the Android app.
 To make changes to the database, we made a site that had the functionality of adding/deleting users and managing the permissions that these users had for the tools in our database.
-On the hardware side, we created a circuit..... and designed a housing for this circuit.
+On the hardware side, we created a circuit as shown below and designed a housing for this circuit.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\columnwidth]{circuit}
+\caption{Circuit design.}
+\label{fig:circuit}
+\end{figure}
 
 \subsection {Functionality}
 The deliverable of this project was a system that allowed outlets to be turned on by authorized users by tapping their Android phone against an NFC tag associated with an outlet. The following enumerates the basic functionality of this system:
@@ -154,15 +160,15 @@ The deliverable of this project was a system that allowed outlets to be turned o
 
 \item The controllable outlets should be protected in such a way that users (with the exception of authorized administrators) cannot remove the plugs of devices from the controlled outlet to plug into another outlet.
 \end{itemize}
-
 \section{Discussion}
 
-The results of this project had several important findings. One was that using the NFC technology built into the Android device was an effective way to transmit information about the user. This was easily used to determine whether the user was authorized to use the tool. The NFC stickers were simple to use and worked well with the NFC embedded in our mobile device. We had no issues with the transmission of information between the sticker and our phone. So, this system could be implemented in a larger scale because phones with embedded NFC are much more common and NFC stickers can be easily incorporated.
+This project had several important findings. One was that using the NFC technology built into the Android device was an effective way to transmit information about the user. This was easily used to determine whether the user was authorized to use the tool. The NFC stickers were simple to use and worked well with the NFC embedded in our mobile device. We had no issues with the transmission of information between the sticker and our phone. Thus, this system could be implemented in a larger scale because phones with embedded NFC are much more common and NFC stickers can be easily incorporated.
 
-Another finding was that the time taken for the tool to turn on after tapping the device next to the NFC tag was slightly longer than we expected. We don't, however, see much potential for improvement here because of the time taken to transmit information to the server.
+Another challenge we faced was creating a small, effective form factor. It was difficult to build the system in a small control unit because of the complexity of the circuit. Although the current size was sufficient to accomplish the task, we know that the form factor of the physical device will be important for making the system work on a larger scale. We hope to improve the form factor in future work on this project.
+
+We also found that the time taken for the tool to turn on after tapping the device next to the NFC tag was slightly longer than we expected. We don't, however, see much potential for improvement here because of the time taken to transmit information to the server.
 
 Although this technology worked well for the tools that we tested, we realize that in order for our system to work effectively, we would have to associate an NFC tag with every tool that we want to incorporate. Thus, there are difficulties in implementing this in the real world. However, we feel that the benefit of this system is higher than the cost of setting up NFC tags for each tool.
-
 \section{Future Work}
 Looking to the future, this project presents several opportunities for improvements, updates, and additions, specifically the form factor of the physical device and the addition of a tracking feature. 
 
