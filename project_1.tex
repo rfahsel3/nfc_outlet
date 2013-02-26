@@ -83,38 +83,30 @@ breaklinks=true,
 \maketitle
 
 \begin{abstract}
-
+In this project, an authorization system was implemented using the NFC technology on mobile devices. The motivation behind this research was to make authorization of tools in a lab easier and more effective. This way, users would be allowed to enter labs but restricted to use certain tools. Previous studies have looked into RFID and NFC technologies for many applications, such as for hospitals and virtual ticketing systems. In our work, we have implemented a system that controls a 120 volt outlet which will provide or restrict access to the user based on their credentials. We use the mobile device as an NFC reader and attach NFC stickers to each tool that act as tags. We implemented the hardware and software sides and a site that allows us to manage the user permissions. From this project, we learned that the NFC technology embedded in our phones is an effective way to transmit the credentials of users. In future work, we hope to...
 \end{abstract}
 
 \keywords{
-	NFC; RFID; Authorization;
+	NFC; RFID; Authorization.
 %	\textcolor{red}{Mandatory section to be included in your final version.}
 }
 
-\category{H.5.m.}{Information Interfaces and Presentation (e.g. HCI)}{Miscellaneous}
+\category{H.5.m.}{}{}
 
-See: \url{http://www.acm.org/about/class/1998/}
-for more information and the full list of ACM classifiers
-and descriptors.
-\textcolor{red}{Mandatory section to be included in your
-final version. On the submission page only the classifiers'
-letter-number combination will need to be entered.}
 
 \terms{
-	Human Factors; Design; Measurement. 
-	If you choose more than one ACM General Term, 
-	separate the terms with a semi-colon.
+	Human Factors; Security. 
 }
 
-See list of the limited ACM 16 terms in the
-instructions and additional information:
-\url{http://www.sheridanprinting.com/sigchi/generalterms.htm}.
-\textcolor{red}{Optional section to be included in your final version.}
+%See list of the limited ACM 16 terms in the
+%instructions and additional information:
+%\url{http://www.sheridanprinting.com/sigchi/generalterms.htm}.
+%\textcolor{red}{Optional section to be included in your final version.}
 
 \section{Introduction}
 
 \subsection {Project Description}
-The goal of this project was to create an access controlled, household 120v outlet. The system is composed of an Android application, web server backend, and Adurino controlled circuit. The best way to describe how the system works is through the following example: Alice wants to use the prototyping lab. She attends the mandatory training session and is given access to the lab. This is great for tools like the screwdrivers, hammers, and other small tools; however, how can the lab owners control access to potentially dangerous tools (i.e. saws, waterjets, etc)? This is how. A user comes up to a saw, opens an Android application, and taps his or her phone against an NFC tag on the desired tool. The phone sends a request to a webserver with the user’s credentials. The web server checks a database to see if the requestor is authorized to use the desired tool; if he or she is, the outlet the tool is connected to is powered; if he or she is not, the outlet to the tool remains powered off. While all of this sounds complicated, it happens in less than five seconds. The outlet is ‘powered’ or ‘not powered’ by a relay, which is controlled by an Adurino board. Additionally, there will be a locking mechanism that prohibits a user from unplugging a device and plugging it into another outlet that is not access controlled. 
+The goal of this project was to create an access controlled, household 120v outlet. The system is composed of an Android application, web server backend, and Adurino controlled circuit. The best way to describe how the system works is through the following example: Alice wants to use the prototyping lab. She attends the mandatory training session and is given access to the lab. This is great for tools like the screwdrivers, hammers, and other small tools; however, how can the lab owners control access to potentially dangerous tools (i.e. saws, waterjets, etc)? This is how. A user comes up to a saw, opens an Android application, and taps his or her phone against an NFC tag on the desired tool. The phone sends a request to a webserver with the user’s credentials. The web server checks a database to see if the requestor is authorized to use the desired tool; if he or she is, the outlet the tool is connected to is powered; if he or she is not, the outlet to the tool remains powered off. While all of this sounds complicated, it happens in less than five seconds. The outlet is ‘powered’ or ‘not powered’ by a relay, which is controlled by an Adurino board. Additionally, there will be a locking mechanism that prohibits a user from unplugging a device and plugging it into another outlet that is not access controlled.
 
 \subsection {Motivation}
 
@@ -165,9 +157,9 @@ The deliverable of this project was a system that allowed outlets to be turned o
 
 \section{Discussion}
 
-The results of this project had several important findings. One was that using the NFC technology built into the Android device was an effective way to transmit information about the user. This was easily used to determine whether the user was authorized to use the tool.
+The results of this project had several important findings. One was that using the NFC technology built into the Android device was an effective way to transmit information about the user. This was easily used to determine whether the user was authorized to use the tool. The NFC stickers were simple to use and worked well with the NFC embedded in our mobile device. We had no issues with the transmission of information between the sticker and our phone. So, this system could be implemented in a larger scale because phones with embedded NFC are much more common and NFC stickers can be easily incorporated.
 
-Another finding was that the time taken for the tool to turn on after tapping the device next to the NFC tag was slightly longer than we expected. 
+Another finding was that the time taken for the tool to turn on after tapping the device next to the NFC tag was slightly longer than we expected. We don't, however, see much potential for improvement here because of the time taken to transmit information to the server.
 
 Although this technology worked well for the tools that we tested, we realize that in order for our system to work effectively, we would have to associate an NFC tag with every tool that we want to incorporate. Thus, there are difficulties in implementing this in the real world. However, we feel that the benefit of this system is higher than the cost of setting up NFC tags for each tool.
 
