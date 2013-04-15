@@ -89,12 +89,12 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 				Log.w("Ryan",iteration[0]);
 				Log.w("Ryan",iteration[1]);
 			}
-			
+			Log.w("Response1", "GOT HERE");
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse response = httpclient.execute(httppost);
 			String line = "";
 		    StringBuilder total = new StringBuilder();
-		    
+		    Log.w("Response2", "GOT HERE");
 		    // Wrap a BufferedReader around the InputStream
 		    BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
@@ -102,6 +102,7 @@ public class NetworkActivity extends AsyncTask<Void,Void,Void> {
 		    while ((line = rd.readLine()) != null) { 
 		        total.append(line); 
 		    }
+		    Log.w("Response3", "GOT HERE");
 			st=total.toString();
 			Log.w("Response:", "GOT HERE");
 		    Log.w("Response: ", total.toString());

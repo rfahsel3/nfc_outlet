@@ -17,7 +17,15 @@
             	    android:layout_height="wrap_content"
             	    android:layout_marginLeft="10dip"/>
             	<!-- logo Ends -->
-
+            	
+            	<Button 
+            	    android:id="@+id/qr_button"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_alignParentRight="true"
+            	    android:layout_marginRight="100dip"
+            	    android:text="@string/button_qr" />
+            	    
             	<Button
             	    android:id="@+id/button_logout"
             	    android:layout_width="wrap_content"

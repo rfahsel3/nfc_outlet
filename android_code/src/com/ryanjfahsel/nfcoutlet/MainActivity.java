@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -49,13 +50,13 @@ public class MainActivity extends Activity {
 	String username;
 	String password;
 	SharedPreferences preferences;
-	
+	Activity activity;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		Log.w("NFCFail", "NFCFAIL");
 		//Removes title bar
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
@@ -64,8 +65,11 @@ public class MainActivity extends Activity {
 		//Vars
 		username = preferences.getString("Unm","not found");
 		password = preferences.getString("Psw","not found");
+		activity = this;
 		
 		//NFC Code
+		Context context = getApplicationContext();
+		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC)){
 		mAdapter = NfcAdapter.getDefaultAdapter(this);
 		mPendingIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
@@ -84,8 +88,17 @@ public class MainActivity extends Activity {
                 new String[] { MifareClassic.class.getName(), Ndef.class.getName(), NfcA.class.getName()}};
         
         intent = getIntent();
-        
-		
+		}
+        //SCAN Code
+      		Button QRButton = (Button) findViewById(R.id.qr_button);
+      		QRButton.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					IntentIntegrator integrator = new IntentIntegrator(activity);
+					integrator.initiateScan();
+				}
+			});
 	    
 	    //LogoutButton Code
 	    final Button logoutButton = (Button) findViewById(R.id.button_logout);
@@ -127,7 +140,10 @@ public class MainActivity extends Activity {
 	@Override
     public void onResume() {
         super.onResume();
-        mAdapter.enableForegroundDispatch(this, mPendingIntent, mFilters, mTechLists);
+        Context context = getApplicationContext();
+		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC)){
+			mAdapter.enableForegroundDispatch(this, mPendingIntent, mFilters, mTechLists);
+		}
     }
 
     @Override
@@ -139,7 +155,10 @@ public class MainActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        mAdapter.disableForegroundDispatch(this);
+        Context context = getApplicationContext();
+		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC)){
+			mAdapter.disableForegroundDispatch(this);
+		}
     }
 
     private String bytesToHexString(byte[] src) {
@@ -181,5 +200,18 @@ public class MainActivity extends Activity {
 			toast.show();
     	}
     }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    	  IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    	  if (scanResult != null) {
+    	    // handle scan result
+    		Log.w("SCAN", scanResult.getContents());
+    		
+    		final String paramList2[][] = {{"nfcid",scanResult.getContents()},{"username", username},{"password",password}};
+            new NetworkActivity( mActivity, "http://nfc.ryanjfahsel.com/requestToStart.php", paramList2, "MainActivity").execute();
+    	  }
+    	  // else continue with any other code you need in the method
+    	  
+    	}
 
 }
