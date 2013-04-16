@@ -109,7 +109,7 @@ public class RemoteAtExample {
 				//Do nothing
 			}
 			else	{
-				new RemoteAtExample(result);
+				new RemoteAtExample(result+4);
 				prevResult=result;
 			}
 			result=Integer.parseInt(conn.Connect());
