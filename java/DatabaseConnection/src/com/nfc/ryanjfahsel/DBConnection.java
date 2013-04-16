@@ -22,7 +22,7 @@ public class DBConnection
         this.username= user;
     }
 
-    public void Connect() {
+    public String Connect() {
         try {
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(dbname,username,password);
@@ -34,10 +34,12 @@ public class DBConnection
                 dbtime = rs.getString(5);
                 System.out.println(dbtime);
             }
+            return dbtime;
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,"not connected"+e.getMessage());
         }
+        	return "WHATEVEr";
     }
 
     public static void main( String args[] )
