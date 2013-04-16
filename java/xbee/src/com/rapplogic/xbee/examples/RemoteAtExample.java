@@ -64,7 +64,7 @@ public class RemoteAtExample {
 			//RemoteAtRequest request = new RemoteAtRequest(addr64, "D5", new int[] {3});
 			//RemoteAtRequest request = new RemoteAtRequest(addr64, "D0", new int[] {2});
 			//RemoteAtRequest request = new RemoteAtRequest(addr64, "P2", new int[] {3});
-			RemoteAtRequest request = new RemoteAtRequest(addr64, "D0", new int[] {5});
+			RemoteAtRequest request = new RemoteAtRequest(addr64, "D0", new int[] {mode});
 			
 			RemoteAtResponse response = (RemoteAtResponse) xbee.sendSynchronous(request, 10000);
 			
