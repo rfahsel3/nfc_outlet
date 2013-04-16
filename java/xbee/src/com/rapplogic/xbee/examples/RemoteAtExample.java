@@ -44,7 +44,7 @@ public class RemoteAtExample {
 
 	private final static Logger log = Logger.getLogger(RemoteAtExample.class);
 	
-	private RemoteAtExample() throws XBeeException, InterruptedException {
+	private RemoteAtExample(int mode) throws XBeeException, InterruptedException {
 		
 		XBee xbee = new XBee();
 		
@@ -80,15 +80,15 @@ public class RemoteAtExample {
 			Thread.sleep(5000);
 //			
 //			// now turn off end device D0
-			request.setValue(new int[] {4});
+//			request.setValue(new int[] {4});
 			
-			response = (RemoteAtResponse) xbee.sendSynchronous(request, 10000);
+//			response = (RemoteAtResponse) xbee.sendSynchronous(request, 10000);
 			
-			if (response.isOk()) {
-				log.info("successfully turned off pin 20 (D0)");	
-			} else {
-				throw new RuntimeException("failed to turn off pin 20.  status is " + response.getStatus());
-			}
+//			if (response.isOk()) {
+	///			log.info("successfully turned off pin 20 (D0)");	
+		//	} else {
+	//			throw new RuntimeException("failed to turn off pin 20.  status is " + response.getStatus());
+		//	}
 			
 		} catch (XBeeTimeoutException e) {
 			log.error("request timed out. make sure you remote XBee is configured and powered on");
@@ -106,7 +106,7 @@ public class RemoteAtExample {
 		int prevResult;
 		result=Integer.parseInt(conn.Connect());
 		prevResult=Integer.parseInt(conn.Connect());
-		new RemoteAtExample();
+		new RemoteAtExample(result+4);
 		Thread.sleep(7000);
 		System.out.println("Enterring loop");
 		while(true)	{
@@ -115,7 +115,7 @@ public class RemoteAtExample {
 				//Do nothing
 			}
 			else	{
-				new RemoteAtExample();
+				new RemoteAtExample(result+4);
 				prevResult=result;
 			}
 			result=Integer.parseInt(conn.Connect());
