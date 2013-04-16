@@ -22,7 +22,6 @@ package com.rapplogic.xbee.examples;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.nfc.ryanjfahsel.DBConnection;
 import com.rapplogic.xbee.api.RemoteAtRequest;
 import com.rapplogic.xbee.api.RemoteAtResponse;
 import com.rapplogic.xbee.api.XBee;
@@ -30,7 +29,6 @@ import com.rapplogic.xbee.api.XBeeAddress64;
 import com.rapplogic.xbee.api.XBeeException;
 import com.rapplogic.xbee.api.XBeeTimeoutException;
 
-//This code is being modified by Ryan Fahsel for use in a Georgia Tech Computer Science Class.
 /** 
  * This example uses Remote AT to turn on/off I/O pins.  
  * This example is more interesting if you connect a LED to pin 20 on your end device.  
@@ -46,21 +44,27 @@ public class RemoteAtExample {
 
 	private final static Logger log = Logger.getLogger(RemoteAtExample.class);
 	
-	private RemoteAtExample(int mode) throws XBeeException, InterruptedException {
+	private RemoteAtExample() throws XBeeException, InterruptedException {
 		
 		XBee xbee = new XBee();
 		
 		try {
-			// Initialize xbee
+			// replace with your coordinator com/baud
 			String SerialPortID="/dev/ttyAMA0";
 			System.setProperty("gnu.io.rxtx.SerialPorts", SerialPortID);
 			xbee.open(SerialPortID, 9600);
+			// xbee.open("COM5", 9600);			
 			
-			// Broadcast address. Send to all on same PAN
+			// replace with SH + SL of your end device
 			XBeeAddress64 addr64 = new XBeeAddress64(0, 0x00, 0x00, 0, 0x00, 0x00, 0xFF, 0xFF);
 			
 			// turn on end device (pin 20) D0 (Digital output high = 5) 
-			RemoteAtRequest request = new RemoteAtRequest(addr64, "D1", new int[] {mode});
+			//RemoteAtRequest request = new RemoteAtRequest(addr64, "D0", new int[] {5});
+			//RemoteAtRequest request = new RemoteAtRequest(addr64, "IR", new int[] {0x7f, 0xff});
+			//RemoteAtRequest request = new RemoteAtRequest(addr64, "D5", new int[] {3});
+			//RemoteAtRequest request = new RemoteAtRequest(addr64, "D0", new int[] {2});
+			//RemoteAtRequest request = new RemoteAtRequest(addr64, "P2", new int[] {3});
+			RemoteAtRequest request = new RemoteAtRequest(addr64, "D0", new int[] {5});
 			
 			RemoteAtResponse response = (RemoteAtResponse) xbee.sendSynchronous(request, 10000);
 			
@@ -102,7 +106,9 @@ public class RemoteAtExample {
 		int prevResult;
 		result=Integer.parseInt(conn.Connect());
 		prevResult=Integer.parseInt(conn.Connect());
-		new RemoteAtExample(result);
+		new RemoteAtExample();
+		Thread.sleep(7000);
+		System.out.println("Enterring loop");
 		while(true)	{
 			result=Integer.parseInt(conn.Connect()); 
 			if(result==prevResult)	{
@@ -113,6 +119,7 @@ public class RemoteAtExample {
 				prevResult=result;
 			}
 			result=Integer.parseInt(conn.Connect());
-		}
+			Thread.sleep(1000);
+		}	
 	}
 }
