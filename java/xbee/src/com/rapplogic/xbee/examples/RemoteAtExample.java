@@ -74,7 +74,7 @@ public class RemoteAtExample {
 				throw new RuntimeException("failed to turn on pin 20.  status is " + response.getStatus());
 			}
 	
-			System.exit(0);
+			//System.exit(0);
 			
 			// wait a bit
 			Thread.sleep(5000);
@@ -95,7 +95,7 @@ public class RemoteAtExample {
 		} catch (Exception e) {
 			log.error("unexpected error", e);
 		} finally {
-			//xbee.close();
+			xbee.close();
 		}
 	}
 	
