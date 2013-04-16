@@ -21,7 +21,7 @@ package com.rapplogic.xbee.examples;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-
+import com.nfc.ryanjfahsel.DBConnection;
 import com.rapplogic.xbee.api.RemoteAtRequest;
 import com.rapplogic.xbee.api.RemoteAtResponse;
 import com.rapplogic.xbee.api.XBee;
@@ -115,7 +115,7 @@ public class RemoteAtExample {
 				//Do nothing
 			}
 			else	{
-				new RemoteAtExample(result+4);
+				new RemoteAtExample();
 				prevResult=result;
 			}
 			result=Integer.parseInt(conn.Connect());
