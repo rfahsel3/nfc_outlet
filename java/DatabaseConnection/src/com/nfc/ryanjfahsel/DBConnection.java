@@ -41,11 +41,11 @@ public class DBConnection
         }
         	return "WHATEVEr";
     }
-
-    public static void main( String args[] )
-    {
-        DBConnection conn=new DBConnection("admin","admin");
-        conn.Connect();
-    }
 }
+   // public static void main( String args[] )
+   // {
+   //     DBConnection conn=new DBConnection("admin","admin");
+   //     conn.Connect();
+   // }
+//}
 
