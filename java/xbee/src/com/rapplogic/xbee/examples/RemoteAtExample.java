@@ -95,7 +95,7 @@ public class RemoteAtExample {
 		} catch (Exception e) {
 			log.error("unexpected error", e);
 		} finally {
-			xbee.close();
+			//xbee.close();
 		}
 	}
 	
