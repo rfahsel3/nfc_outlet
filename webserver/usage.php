@@ -1,16 +1,18 @@
 <?php
 require("res/setup.php");
-echo "</br>Here's a list of all of the tools and how often each user used them.</br></br>";
-echo "<table border=1 cellpadding=5 cellspacing=2>";
-echo "<tr><th>Tool</th><th>Username</th><th>Number of Times Used</th></tr>";
-$query=mysql_query("SELECT Users.username, Users.uid, Tools.toolName, Tools.tid, Permissions.count FROM Permissions JOIN Users ON Permissions.uid=Users.uid JOIN Tools ON Permissions.tid=Tools.tid ORDER BY Tools.tid, Permissions.count DESC");
-$num = mysql_num_rows($query);
-while($rows = mysql_fetch_array($query)){
-	$user=$rows['uid'];
-	$tool=$rows['tid'];
-	echo "<tr><td>".$rows['toolName']."</td><td>".$rows['username']."</td><td>".$rows['count']."</td></tr>";
+
+echo "Check usage for any of the following tools: </br>";
+echo "<form action='usageProcess.php' method='post'>";
+
+$queryTools=mysql_query("SELECT * from muc.Tools");
+echo "Tool Name: <select name='tool' value='Toolname'>";
+while ($rowsTools=mysql_fetch_array($queryTools)) {
+	$tool = $rowsTools['toolName'];
+	$tid = $rowsTools['tid'];
+	echo "<option name='tid' id=$tid value=".$tid.">".$tool."</option>";
 }
-echo "</table></br>";
+echo "</select></br>";
+echo "</br><input type='submit' value='Check Usage'>";
 
 $goBack = "<input type='button' id='back_button' value='Back to Home'>";
 echo "<a href='index.php'>".$goBack."</a></br>";
