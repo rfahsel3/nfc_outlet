@@ -7,4 +7,7 @@ echo "<a href='users.php'>".$addUser."</a></br>";
 
 $manage = "<input type='button' id='php_button' value='Manage Permissions'>";
 echo "<a href='permissions.php'>".$manage."</a></br>";
+
+$manage = "<input type='button' id='php_button' value='Check Tool Usage'>";
+echo "<a href='usage.php'>".$manage."</a></br>";
 ?>
