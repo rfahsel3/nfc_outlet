@@ -12,7 +12,21 @@ while ($rowsTools=mysql_fetch_array($queryTools)) {
 	echo "<option name='tid' id=$tid value=".$tid.">".$tool."</option>";
 }
 echo "</select></br>";
-echo "</br><input type='submit' value='Check Usage'>";
+echo "</br><input type='submit' value='Check Specific Tool Usage'>";
+
+
+echo "</br></br></br><b>Here's a summary of all tool usage.</br></b></br>";
+echo "<table border=1 cellpadding=5 cellspacing=2>";
+echo "<tr><th>Tool</th><th>Total Uses</th></tr>";
+$query=mysql_query("SELECT Tools.toolName, sum(Permissions.count) as s FROM Permissions JOIN Users ON Permissions.uid=Users.uid JOIN Tools ON Permissions.tid=Tools.tid GROUP BY Tools.tid ORDER BY Tools.toolName ASC");
+$num = mysql_num_rows($query);
+while($rows=mysql_fetch_array($query)){
+	echo "<tr><td>".$rows['toolName']."</td><td>".$rows['s']."</td></tr>";
+}
+echo "</table></br>";
+
+
+
 
 $goBack = "<input type='button' id='back_button' value='Back to Home'>";
 echo "<a href='index.php'>".$goBack."</a></br>";
